@@ -13,7 +13,7 @@ struct ContentView: View {
         HStack {
             Image("snowflake")
                 .renderingMode(.template)
-                .foregroundColor(.greenAdd)
+                .foregroundColor(.addGreen)
             Text("Hello, Factory!")
         }
         .padding()
