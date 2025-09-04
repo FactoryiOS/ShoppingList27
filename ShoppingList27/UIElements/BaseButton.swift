@@ -20,16 +20,20 @@ struct BaseButton: View {
                 .font(titleFont)
                 .foregroundStyle(isActive ? Color.white : Color.hint)
                 .frame(maxWidth: .infinity)
-                .padding(.vertical, 11)
+                .padding(.vertical, 12)
                 .padding(.horizontal, 20)
         }
         .background(isActive ? Color.uniTurquoise : Color.button)
-        .clipShape(RoundedRectangle(cornerRadius: 20))
+        .disabled(!isActive)
+        .clipShape(RoundedRectangle(cornerRadius: 100))
     }
 }
 
 #Preview {
-    BaseButton(isActive: false, title: "Test", action: {
-        print("I was tapped!")
-    })
+    VStack {
+        BaseButton(isActive: true, title: "Test", action: {
+            print("I was tapped!")
+        })
+    }
+    .padding(.horizontal, 16)
 }
