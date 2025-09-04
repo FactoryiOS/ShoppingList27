@@ -9,10 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
+      
         HStack {
-            Image(systemName: "apple.logo")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
+            Image("snowflake")
+                .renderingMode(.template)
+                .foregroundColor(.turquoise)
             Text("Hello, Factory!")
         }
         .padding()
@@ -20,5 +21,9 @@ struct ContentView: View {
 }
 
 #Preview {
+    Color.blue
+         .ignoresSafeArea()
+         .overlay(
     ContentView()
+    )
 }
