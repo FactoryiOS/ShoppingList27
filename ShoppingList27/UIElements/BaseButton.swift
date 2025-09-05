@@ -30,10 +30,15 @@ struct BaseButton: View {
 }
 
 #Preview {
+    let state: Bool = true
+    let title = "Test"
+    let action = { print("I was tapped!") }
+    
     VStack {
-        BaseButton(isActive: true, title: "Test", action: {
-            print("I was tapped!")
-        })
+        BaseButton(isActive: state,
+                   title: title,
+                   action: action
+        )
     }
     .padding(.horizontal, 16)
 }
