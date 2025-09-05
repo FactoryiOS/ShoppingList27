@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 /// Плейсхолдер экрана "Давайте спланируем покупки".
 /// Отображает картинку и текстовые подсказки, по центру экрана.
 struct PlanningShoppingPlaceholderView: View {
