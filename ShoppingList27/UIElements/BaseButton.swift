@@ -30,7 +30,7 @@ struct BaseButton: View {
 }
 
 #Preview {
-    let state: Bool = true
+    let state: Bool = false
     let title = "Test"
     let action = { print("I was tapped!") }
     
