@@ -22,15 +22,16 @@ struct BaseButton: View {
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 12)
                 .padding(.horizontal, 20)
+                .background(isActive ? Color.uniTurquoise : Color.button)
+                .clipShape(RoundedRectangle(cornerRadius: 100))
         }
-        .background(isActive ? Color.uniTurquoise : Color.button)
+        .contentShape(RoundedRectangle(cornerRadius: 100))
         .disabled(!isActive)
-        .clipShape(RoundedRectangle(cornerRadius: 100))
     }
 }
 
 #Preview {
-    let state: Bool = false
+    let state: Bool = true
     let title = "Test"
     let action = { print("I was tapped!") }
     
