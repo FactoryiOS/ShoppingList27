@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BaseButton: View {
-    let isActive: Bool
+    var isActive: Bool = true
     let title: String
     let action: () -> Void
     
@@ -36,10 +36,10 @@ struct BaseButton: View {
     let action = { print("I was tapped!") }
     
     VStack {
-        BaseButton(isActive: state,
+        BaseButton(title: title, action: action)
+        BaseButton(isActive: false,
                    title: title,
-                   action: action
-        )
+                   action: action)
     }
-    .padding(.horizontal, 16)
+    .padding(.horizontal, 60)
 }
