@@ -31,7 +31,6 @@ struct BaseButton: View {
 }
 
 #Preview {
-    let state: Bool = true
     let title = "Test"
     let action = { print("I was tapped!") }
     
@@ -41,5 +40,5 @@ struct BaseButton: View {
                    title: title,
                    action: action)
     }
-    .padding(.horizontal, 60)
+    .padding(.horizontal, 16)
 }
