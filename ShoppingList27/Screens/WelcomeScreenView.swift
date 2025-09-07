@@ -47,6 +47,7 @@ struct WelcomeScreenView: View {
             .padding(.bottom, 20)
         }
         .padding(.horizontal, 16)
+        .background(.backgroundScreen)
     }
 }
 
