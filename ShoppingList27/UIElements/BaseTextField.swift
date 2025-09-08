@@ -1,54 +1,82 @@
-//
-//  BaseTextField.swift
-//  ShoppingList27
-//
-//  Created by Hajime4life on 07.09.2025.
-//
-
 import SwiftUI
 
 struct BaseTextField: View {
     let placeholder: String
-    @Binding var text: String
-    @State private var hasError: Bool = true
     
+    @Binding var text: String
+    @Binding var hasError: Bool
+    @Binding var errorText: String?
+
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 4) {
             HStack {
                 TextField(placeholder, text: $text)
                     .tint(.uniTurquoise)
                     .foregroundColor(.grey80)
                 
                 Button(action: {
-                    
+                        text = ""
                 }) {
                     Image(systemName: "xmark.circle.fill")
                         .foregroundColor(.hint)
                 }
-                .opacity(text.count > 0 ? 1 : 0)
+                .opacity(text.isEmpty ? 0 : 1)
             }
             .padding()
-            .background(Color.white) // В ассетах нет этого фона, он в темной и белой теме отличается в макете
+            .background(Color.bgcolor)
             .cornerRadius(12)
             .overlay(
                 RoundedRectangle(cornerRadius: 12)
                     .stroke(hasError ? Color.uniRed : Color.clear, lineWidth: 0.5)
             )
             
-            Text("Этот товар уже есть в списке, добавьте другой")
-                .font(.system(size: 13))
-                .foregroundColor(.uniRed)
+            if hasError, let errorText = errorText {
+                Text(errorText)
+                    .font(.system(size: 13))
+                    .foregroundColor(.uniRed)
+            }
         }
         .padding(.horizontal)
-
     }
 }
 
 #Preview {
-    VStack {
-        BaseTextField(placeholder: "Название списка", text: .constant(""))
-        BaseTextField(placeholder: "Название списка", text: .constant("sdf"))
+    struct PreviewWrapper: View {
+        @State private var text1 = ""
+        @State private var hasError1 = false
+        @State private var errorText1: String? = nil
+        
+        @State private var text2 = "sdf"
+        @State private var hasError2 = true
+        @State private var errorText2: String? = "Этот товар уже есть в списке"
+
+        var body: some View {
+            VStack {
+                BaseTextField(
+                    placeholder: "Название списка",
+                    text: $text1,
+                    hasError: $hasError1,
+                    errorText: $errorText1
+                )
+                BaseTextField(
+                    placeholder: "Название списка",
+                    text: $text2,
+                    hasError: $hasError2,
+                    errorText: $errorText2
+                )
+                Button("Переключить") {
+                    withAnimation {
+                        hasError1.toggle()
+                        hasError2.toggle()
+                        errorText1 = hasError1 ? "Поле не может быть пустым" : nil
+                        errorText2 = hasError2 ? "Этот товар уже есть в списке" : nil
+                    }
+                }
+                .padding()
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.backgroundScreen)
+        }
     }
-    .frame(maxWidth: .infinity, maxHeight: .infinity)
-    .background(Color.backgroundScreen)
+    return PreviewWrapper()
 }
