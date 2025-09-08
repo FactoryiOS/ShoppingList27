@@ -51,19 +51,11 @@ struct EmptyListPlaceholderView: View {
     }
     
     private var headlineText: some View {
-        Text(Constants.mainText)
-            .font(title3Medium)
-            .foregroundColor(.grey80)
-            .lineLimit(1)
-            .minimumScaleFactor(0.5)
+        makePlaceholderText(Constants.mainText, font: title3Medium)
     }
     
     private var supportingText: some View {
-        Text(Constants.subText)
-            .font(regular17)
-            .foregroundColor(.grey80)
-            .lineLimit(1)
-            .minimumScaleFactor(0.5)
+        makePlaceholderText(Constants.subText, font: regular17)
     }
 }
 
@@ -89,6 +81,14 @@ private extension EmptyListPlaceholderView {
     /// - Returns: `CGPoint` с координатами центра контейнера
     func getContainerPosition(for geometry: GeometryProxy) -> CGPoint {
         CGPoint(x: geometry.size.width / 2, y: geometry.size.height / 2)
+    }
+    
+    func makePlaceholderText(_ text: String, font: Font) -> some View {
+        Text(text)
+            .font(font)
+            .foregroundColor(.grey80)
+            .lineLimit(1)
+            .minimumScaleFactor(0.5)
     }
 }
 
