@@ -36,7 +36,6 @@ struct BaseTextField: View {
                     .foregroundColor(.uniRed)
             }
         }
-        .padding(.horizontal)
     }
 }
 
@@ -74,6 +73,7 @@ struct BaseTextField: View {
                 }
                 .padding()
             }
+            .padding(.horizontal)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.backgroundScreen)
         }
