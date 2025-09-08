@@ -11,6 +11,14 @@ import SwiftUI
 /// Отображает картинку и текстовые подсказки, по центру экрана.
 struct EmptyListPlaceholderView: View {
     
+    private enum Constants {
+        static let mainText = "Давайте спланируем покупки!"
+        static let subText = "Создайте свой первый список"
+    }
+    
+    private let title3Medium = Font.system(size: 20, weight: .medium)
+    private let regular17 = Font.system(size: 17, weight: .regular)
+    
     var body: some View {
         GeometryReader { geometry in
             VStack(spacing: 28) {
@@ -43,7 +51,7 @@ struct EmptyListPlaceholderView: View {
     
     private var headlineText: some View {
         Text(Constants.mainText)
-            .font(.title3Medium)
+            .font(title3Medium)
             .foregroundColor(.grey80)
             .lineLimit(1)
             .minimumScaleFactor(0.5)
@@ -51,7 +59,7 @@ struct EmptyListPlaceholderView: View {
     
     private var supportingText: some View {
         Text(Constants.subText)
-            .font(.regular17)
+            .font(regular17)
             .foregroundColor(.grey80)
             .lineLimit(1)
             .minimumScaleFactor(0.5)
@@ -60,11 +68,6 @@ struct EmptyListPlaceholderView: View {
 
 // MARK: - Extension
 private extension EmptyListPlaceholderView {
-    enum Constants {
-        static let mainText = "Давайте спланируем покупки!"
-        static let subText = "Создайте свой первый список"
-    }
-    
     /// Возвращает ширину контейнера плейсхолдера в зависимости от размеров родительского `GeometryProxy`
     /// - Parameter geometry: `GeometryProxy` родительского контейнера
     /// - Returns: Ширина контейнера
