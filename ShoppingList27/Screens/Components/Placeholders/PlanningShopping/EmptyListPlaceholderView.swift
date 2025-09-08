@@ -26,8 +26,10 @@ struct EmptyListPlaceholderView: View {
                 textContent
             }
             .padding(.horizontal, 49)
-            .frame(width: getContainerWidth(for: geometry), height: getContainerHeight(for: geometry),
-                   alignment: .center
+            .frame(
+                width: getContainerWidth(for: geometry),
+                height: getContainerHeight(for: geometry),
+                alignment: .center
             )
             .position(getContainerPosition(for: geometry))
         }
@@ -37,8 +39,7 @@ struct EmptyListPlaceholderView: View {
         Image("createList")
             .resizable()
             .scaledToFit()
-            .frame(maxHeight: 300)
-            .frame(maxWidth: .infinity)
+            .frame(maxWidth: .infinity, maxHeight: 300)
     }
     
     private var textContent: some View {
