@@ -26,6 +26,7 @@ struct ListItemView: View {
                 
                 Image(item.circleIcon)
                     .foregroundColor(.grey80)
+                    .colorScheme(.light)
             }
             
             Text(item.title)
@@ -42,9 +43,8 @@ struct ListItemView: View {
         }
         .padding(.horizontal)
         .padding(.vertical, 18)
-        .background(Color.white) // Скорее всего тут надо добавить ассет
+        .background(Color.bgcolor)
         .cornerRadius(16)
-        .padding(.horizontal)
     }
 }
 
@@ -54,6 +54,7 @@ struct ListItemView: View {
         ListItemView(item: ListItem.mock2)
         ListItemView(item: ListItem.mock3)
     }
+    .padding(.horizontal)
     .frame(maxWidth: .infinity, maxHeight: .infinity)
     .background(Color.backgroundScreen)
 }
