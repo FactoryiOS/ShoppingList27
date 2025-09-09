@@ -10,14 +10,14 @@ import SwiftUI
 struct DesignSelector: View {
     @Binding var selectedIcon: String
     
-    var selectedColor: Color?
+    var selectionColor: Color?
     
     private var titleText: String = "Выберите дизайн"
     private var titleFont = Font.system(size: 16, weight: .regular)
     
-    init(selectedIcon: Binding<String>, selectedColor: Color?) {
+    init(selectedIcon: Binding<String>, selectionColor: Color?) {
         self._selectedIcon = selectedIcon
-        self.selectedColor = selectedColor
+        self.selectionColor = selectionColor
     }
     
     private enum Icons: String, CaseIterable {
@@ -93,13 +93,21 @@ struct DesignSelector: View {
     }
     
     private func makeVGrid(columnsCount: Int, spacingBetweenColumns: CGFloat = 8, maxColumnWidth: CGFloat = 48) -> some View {
-        LazyVGrid(columns: makeColumns(count: columnsCount, spacingBetweenColumns: spacingBetweenColumns, maxColumnWidth: maxColumnWidth), alignment: .center, spacing: 12) {
+        LazyVGrid(columns: makeColumns(count: columnsCount,
+                                       spacingBetweenColumns: spacingBetweenColumns,
+                                       maxColumnWidth: maxColumnWidth),
+                  alignment: .center,
+                  spacing: 12) {
+
             ForEach(Icons.allCases, id: \.self) { icon in
                 let iconName = icon.rawValue
                 Button {
                     selectIcon(iconName)
                 } label: {
-                    IconViewCell(iconName: iconName, isSelected: iconName == selectedIcon, selectedColor: selectedColor ?? .backgroundIcon.opacity(0.5))
+                    IconViewCell(iconName: iconName,
+                                 isSelected: iconName == selectedIcon,
+                                 selectedColor: selectionColor ?? .backgroundIcon.opacity(0.5)
+                    )
                 }
             }
         }
@@ -117,20 +125,24 @@ struct DesignSelector: View {
 
 #Preview {
     @Previewable @State var selection: String = ""
-    var selectedColor: Color? = .addGreen
-    
-    var colorScheme: ColorScheme = .dark
-    
-    ZStack {
-        Color.backgroundScreen
-            .ignoresSafeArea()
-        VStack {
-            DesignSelector(selectedIcon: $selection, selectedColor: selectedColor)
-            DesignSelector(selectedIcon: $selection, selectedColor: nil)
+    let selectionColor: Color? = .addGreen
+
+    VStack {
+        ZStack {
+            Color.backgroundScreen
+            DesignSelector(selectedIcon: $selection, selectionColor: selectionColor)
+                .padding(16)
         }
-        .padding(16)
+        .colorScheme(.light)
+        ZStack {
+            Color.backgroundScreen
+            DesignSelector(selectedIcon: $selection, selectionColor: selectionColor)
+                .padding(16)
+        }
+        .colorScheme(.dark)
     }
-    .colorScheme(colorScheme)
+    .ignoresSafeArea()
+    
     .onChange(of: selection) {
         print(selection)
     }
