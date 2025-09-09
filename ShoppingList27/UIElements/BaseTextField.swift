@@ -1,29 +1,31 @@
 import SwiftUI
 
 struct BaseTextField: View {
-    let placeholder: String
-    let keyboardType: UIKeyboardType = .default
     
     @Binding var text: String
+    let placeholder: String
     let hasError: Bool
     let errorText: String?
+    let keyboardType: UIKeyboardType = .default
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             HStack {
                 TextField(placeholder, text: $text)
                     .tint(.uniTurquoise)
+                    .font(.system(size: 22))
                     .foregroundColor(.grey80)
                     .keyboardType(keyboardType)
                 
                 Button(action: {
-                        text = ""
-                }) {
+                    text = ""
+                }, label: {
                     Image(systemName: "xmark.circle.fill")
                         .foregroundColor(.hint)
-                }
+                })
                 .opacity(text.isEmpty ? 0 : 1)
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
             .padding()
             .background(Color.bgcolor)
             .cornerRadius(12)
@@ -34,7 +36,7 @@ struct BaseTextField: View {
             
             if hasError, let errorText = errorText {
                 Text(errorText)
-                    .font(.system(size: 13))
+                    .font(.system(size: 18))
                     .padding(.horizontal, 8)
                     .foregroundColor(.uniRed)
             }
@@ -46,7 +48,7 @@ struct BaseTextField: View {
     struct PreviewWrapper: View {
         @State private var text1 = ""
         @State private var hasError1 = false
-        @State private var errorText1: String? = nil
+        @State private var errorText1: String? = ""
         
         @State private var text2 = "sdf"
         @State private var hasError2 = true
@@ -55,14 +57,14 @@ struct BaseTextField: View {
         var body: some View {
             VStack {
                 BaseTextField(
-                    placeholder: "Название списка",
                     text: $text1,
+                    placeholder: "Название списка",
                     hasError: hasError1,
                     errorText: errorText1
                 )
                 BaseTextField(
-                    placeholder: "Название списка",
                     text: $text2,
+                    placeholder: "Название списка",
                     hasError: hasError2,
                     errorText: errorText2
                 )
