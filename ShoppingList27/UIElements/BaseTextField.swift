@@ -2,10 +2,11 @@ import SwiftUI
 
 struct BaseTextField: View {
     let placeholder: String
+    let keyboardType: UIKeyboardType = .default
     
     @Binding var text: String
-    @Binding var hasError: Bool
-    @Binding var errorText: String?
+    let hasError: Bool
+    let errorText: String?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -13,6 +14,7 @@ struct BaseTextField: View {
                 TextField(placeholder, text: $text)
                     .tint(.uniTurquoise)
                     .foregroundColor(.grey80)
+                    .keyboardType(keyboardType)
                 
                 Button(action: {
                         text = ""
@@ -33,6 +35,7 @@ struct BaseTextField: View {
             if hasError, let errorText = errorText {
                 Text(errorText)
                     .font(.system(size: 13))
+                    .padding(.horizontal, 8)
                     .foregroundColor(.uniRed)
             }
         }
@@ -54,14 +57,14 @@ struct BaseTextField: View {
                 BaseTextField(
                     placeholder: "Название списка",
                     text: $text1,
-                    hasError: $hasError1,
-                    errorText: $errorText1
+                    hasError: hasError1,
+                    errorText: errorText1
                 )
                 BaseTextField(
                     placeholder: "Название списка",
                     text: $text2,
-                    hasError: $hasError2,
-                    errorText: $errorText2
+                    hasError: hasError2,
+                    errorText: errorText2
                 )
                 Button("Переключить") {
                     withAnimation {
