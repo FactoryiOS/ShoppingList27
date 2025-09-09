@@ -6,7 +6,7 @@ struct BaseTextField: View {
     let placeholder: String
     let hasError: Bool
     let errorText: String?
-    let keyboardType: UIKeyboardType = .default
+    var keyboardType: UIKeyboardType = .numberPad
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -45,43 +45,22 @@ struct BaseTextField: View {
 }
 
 #Preview {
-    struct PreviewWrapper: View {
-        @State private var text1 = ""
-        @State private var hasError1 = false
-        @State private var errorText1: String? = ""
-        
-        @State private var text2 = "sdf"
-        @State private var hasError2 = true
-        @State private var errorText2: String? = "Этот товар уже есть в списке"
-
-        var body: some View {
-            VStack {
-                BaseTextField(
-                    text: $text1,
-                    placeholder: "Название списка",
-                    hasError: hasError1,
-                    errorText: errorText1
-                )
-                BaseTextField(
-                    text: $text2,
-                    placeholder: "Название списка",
-                    hasError: hasError2,
-                    errorText: errorText2
-                )
-                Button("Переключить") {
-                    withAnimation {
-                        hasError1.toggle()
-                        hasError2.toggle()
-                        errorText1 = hasError1 ? "Поле не может быть пустым" : nil
-                        errorText2 = hasError2 ? "Этот товар уже есть в списке" : nil
-                    }
-                }
-                .padding()
-            }
-            .padding(.horizontal)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.backgroundScreen)
-        }
+    @Previewable @State var text1 = ""
+    VStack(spacing: 20) {
+        BaseTextField(
+            text: $text1,
+            placeholder: "Название списка",
+            hasError: false,
+            errorText: nil
+        )
+        BaseTextField(
+            text: .constant("5"), // тут крестик работать не будет
+            placeholder: "Количество",
+            hasError: true,
+            errorText: "Какая-то ошибка, пока не понятно в чем :)",
+            keyboardType: .numberPad
+        )
     }
-    return PreviewWrapper()
+    .padding()
+    .background(Color.backgroundScreen)
 }
