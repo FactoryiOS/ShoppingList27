@@ -20,27 +20,6 @@ struct DesignSelector: View {
         self.selectionColor = selectionColor
     }
     
-    private enum Icons: String, CaseIterable {
-        case airplane
-        case alert
-        case balloon
-        case bandage
-        case barbell
-        case bed
-        case briefcase
-        case build
-        case business
-        case calendar
-        case car
-        case cart
-        case colorPalette
-        case fastFood
-        case gameController
-        case gift
-        case paw
-        case snowflake
-    }
-    
     var body: some View {
         mainView
             .background(Color.bgcolor)
@@ -67,25 +46,8 @@ struct DesignSelector: View {
             .foregroundColor(.grey80)
     }
     
-    private struct IconViewCell: View {
-        var iconName: String
-        var isSelected: Bool = false
-        var selectedColor: Color
-        
-        static let height: CGFloat = 48
-        static let width: CGFloat = 48
-        
-        var body: some View {
-            ZStack {
-                Circle()
-                    .fill(isSelected ? selectedColor : .backgroundIcon)
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: IconViewCell.width, height: IconViewCell.height)
-                
-                Image(iconName)
-                    .foregroundColor(isSelected ? .colorBackConstant : .colorWhite)
-            }
-        }
+    private var iconsGrid: some View {
+        makeVGrid(columnsCount: 6)
     }
     
     private func makeColumns(count: Int, spacingBetweenColumns spacing: CGFloat, maxColumnWidth width: CGFloat) -> [GridItem] {
@@ -117,10 +79,47 @@ struct DesignSelector: View {
         selectedIcon = iconName
     }
     
-    private var iconsGrid: some View {
-        makeVGrid(columnsCount: 6)
+    private struct IconViewCell: View {
+        var iconName: String
+        var isSelected: Bool = false
+        var selectedColor: Color
+        
+        static let height: CGFloat = 48
+        static let width: CGFloat = 48
+        
+        var body: some View {
+            ZStack {
+                Circle()
+                    .fill(isSelected ? selectedColor : .backgroundIcon)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: IconViewCell.width, height: IconViewCell.height)
+                
+                Image(iconName)
+                    .foregroundColor(isSelected ? .colorBackConstant : .colorWhite)
+            }
+        }
     }
     
+    private enum Icons: String, CaseIterable {
+        case airplane
+        case alert
+        case balloon
+        case bandage
+        case barbell
+        case bed
+        case briefcase
+        case build
+        case business
+        case calendar
+        case car
+        case cart
+        case colorPalette
+        case fastFood
+        case gameController
+        case gift
+        case paw
+        case snowflake
+    }
 }
 
 #Preview {
