@@ -14,6 +14,7 @@ struct EmptyListPlaceholderView: View {
     private enum Constants {
         static let mainText = "Давайте спланируем покупки!"
         static let subText = "Создайте свой первый список"
+        static let image = "createList"
     }
     
     private let title3Medium = Font.system(size: 20, weight: .medium)
@@ -36,7 +37,7 @@ struct EmptyListPlaceholderView: View {
     }
     
     private var imageContent: some View {
-        Image("createList")
+        Image(Constants.image)
             .resizable()
             .scaledToFit()
             .frame(maxWidth: .infinity, maxHeight: 300)
