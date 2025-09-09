@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ColorPickerView: View {
     
-    @State private var selectedColor: Color? = nil
+    @State private var selectedColor: Color?
     
     let colors: [Color] = [.addGreen, .addPurple, .addBlue, .addRed, .addYellow]
     let title: String = "Цвет"
