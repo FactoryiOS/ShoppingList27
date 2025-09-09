@@ -13,7 +13,7 @@ struct BaseTextField: View {
             HStack {
                 TextField(placeholder, text: $text)
                     .tint(.uniTurquoise)
-                    .font(.system(size: 22))
+                    .font(.system(size: 17))
                     .foregroundColor(.grey80)
                     .keyboardType(keyboardType)
                 
@@ -36,7 +36,7 @@ struct BaseTextField: View {
             
             if hasError, let errorText = errorText {
                 Text(errorText)
-                    .font(.system(size: 18))
+                    .font(.system(size: 13))
                     .padding(.horizontal, 8)
                     .foregroundColor(.uniRed)
             }
