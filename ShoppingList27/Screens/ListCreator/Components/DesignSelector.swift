@@ -29,11 +29,8 @@ struct DesignSelector: View {
     }
     
     private var mainView: some View {
-        VStack(spacing: 12) {
-            HStack(spacing: 0) {
+        VStack(alignment: .leading, spacing: 12) {
                 title
-                Spacer()
-            }
             .padding(.horizontal, 12)
             iconsGrid
         }
@@ -50,11 +47,19 @@ struct DesignSelector: View {
         makeVGrid(columnsCount: 6)
     }
     
-    private func makeColumns(count: Int, spacingBetweenColumns spacing: CGFloat, maxColumnWidth width: CGFloat) -> [GridItem] {
+    private func selectIcon(_ iconName: String) {
+        selectedIcon = iconName
+    }
+    
+    private func makeColumns(count: Int,
+                             spacingBetweenColumns spacing: CGFloat,
+                             maxColumnWidth width: CGFloat) -> [GridItem] {
         Array(repeating: GridItem(.fixed(width), spacing: spacing), count: count)
     }
     
-    private func makeVGrid(columnsCount: Int, spacingBetweenColumns: CGFloat = 8, maxColumnWidth: CGFloat = 48) -> some View {
+    private func makeVGrid(columnsCount: Int,
+                           spacingBetweenColumns: CGFloat = 8,
+                           maxColumnWidth: CGFloat = 48) -> some View {
         LazyVGrid(columns: makeColumns(count: columnsCount,
                                        spacingBetweenColumns: spacingBetweenColumns,
                                        maxColumnWidth: maxColumnWidth),
@@ -73,52 +78,6 @@ struct DesignSelector: View {
                 }
             }
         }
-    }
-    
-    private func selectIcon(_ iconName: String) {
-        selectedIcon = iconName
-    }
-    
-    private struct IconViewCell: View {
-        var iconName: String
-        var isSelected: Bool = false
-        var selectedColor: Color
-        
-        static let height: CGFloat = 48
-        static let width: CGFloat = 48
-        
-        var body: some View {
-            ZStack {
-                Circle()
-                    .fill(isSelected ? selectedColor : .backgroundIcon)
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: IconViewCell.width, height: IconViewCell.height)
-                
-                Image(iconName)
-                    .foregroundColor(isSelected ? .colorBackConstant : .colorWhite)
-            }
-        }
-    }
-    
-    private enum Icons: String, CaseIterable {
-        case airplane
-        case alert
-        case balloon
-        case bandage
-        case barbell
-        case bed
-        case briefcase
-        case build
-        case business
-        case calendar
-        case car
-        case cart
-        case colorPalette
-        case fastFood
-        case gameController
-        case gift
-        case paw
-        case snowflake
     }
 }
 
