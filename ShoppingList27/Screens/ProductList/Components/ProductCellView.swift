@@ -18,9 +18,13 @@ struct ProductCellView: View {
             Button("", action: { isChecked.toggle() })
             .buttonStyle(.checkbox(isChecked: isChecked))
             
-            Text(product.name)
-            Spacer()
-            Text("\(product.count) \(product.unitMeasure.shortName)")
+            Group {
+                Text(product.name)
+                
+                Spacer()
+                Text("\(product.count) \(product.unitMeasure.shortName)")
+            }
+            .foregroundColor(isChecked ? .hint : .grey80)
         }
     }
 }
