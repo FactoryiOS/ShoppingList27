@@ -15,37 +15,34 @@ struct ColorPickerView: View {
     let title: String = "Цвет"
     
     var body: some View {
-        HStack(spacing: 0) {
-            Spacer()
-            ForEach(colors, id: \.self) { color in
-                ZStack {
-                    if selectedColor == color {
-                        Circle()
-                            .stroke(Color.teal, lineWidth: 2)
-                            .frame(width: 48, height: 48)
-                    }
-                    Circle()
-                        .fill(color)
-                        .frame(width: 40, height: 40)
-                }
-                .padding(.top, 12)
-                .contentShape(Circle())
-                .onTapGesture {
-                    selectedColor = (selectedColor == color) ? nil : color
-                }
+        VStack {
+            Text(title)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            HStack(spacing: 0) {
                 Spacer()
+                ForEach(colors, id: \.self) { color in
+                    ZStack {
+                        if selectedColor == color {
+                            Circle()
+                                .stroke(Color.teal, lineWidth: 2)
+                                .frame(width: 48, height: 48)
+                        }
+                        Circle()
+                            .fill(color)
+                            .frame(width: 40, height: 40)
+                    }
+                    .frame(width: 48, height: 48)
+                    .contentShape(Circle())
+                    .onTapGesture {
+                        selectedColor = (selectedColor == color) ? nil : color
+                    }
+                    Spacer()
+                }
             }
         }
-        .frame(height: 105)
+        .padding()
         .background(.bgcolor)
         .cornerRadius(12)
-        .overlay(alignment: .topLeading) {
-            Text(title)
-                .font(.system(size: 16))
-                .foregroundColor(.grey80)
-                .padding(.leading, 12)
-                .padding(.top, 12)
-        }
     }
 }
 
