@@ -9,15 +9,16 @@ import SwiftUI
 
 struct ColorPickerView: View {
     
-    @State private var selectedColor: Color?
+    @Binding var selectedColor: Color?
     
     let colors: [Color] = [.addGreen, .addPurple, .addBlue, .addRed, .addYellow]
-    let title: String = "Цвет"
+    let title: String = "Выберите цвет"
     
     var body: some View {
         VStack {
             Text(title)
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.bottom, 12)
             HStack(spacing: 0) {
                 Spacer()
                 ForEach(colors, id: \.self) { color in
@@ -47,5 +48,6 @@ struct ColorPickerView: View {
 }
 
 #Preview {
-    ColorPickerView()
+    @Previewable @State var selectedColor: Color?
+    return ColorPickerView(selectedColor: $selectedColor)
 }
