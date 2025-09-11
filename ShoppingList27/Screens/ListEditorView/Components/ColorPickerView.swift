@@ -15,7 +15,7 @@ struct ColorPickerView: View {
     let title: String = "Выберите цвет"
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             Text(title)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.bottom, 12)
@@ -25,7 +25,7 @@ struct ColorPickerView: View {
                     ZStack {
                         if selectedColor == color {
                             Circle()
-                                .stroke(Color.teal, lineWidth: 2)
+                                .stroke(.uniTurquoise, lineWidth: 2)
                                 .frame(width: 48, height: 48)
                         }
                         Circle()
@@ -41,7 +41,7 @@ struct ColorPickerView: View {
                 }
             }
         }
-        .padding()
+        .padding(12)
         .background(.bgcolor)
         .cornerRadius(12)
     }
