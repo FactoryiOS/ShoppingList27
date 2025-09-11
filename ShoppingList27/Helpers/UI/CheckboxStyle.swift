@@ -14,5 +14,11 @@ struct CheckboxStyle: ButtonStyle {
         Image(systemName: isChecked ? "checkmark.square.fill" : "square")
             .foregroundColor(isChecked ? .uniTurquoise : .gray)
             .font(.system(size: 24))
+            .background(
+                Image(systemName: "square.fill")
+                    .foregroundColor(.white)
+                    .opacity(isChecked ? 1 : 0)
+                    .font(.system(size: 24))
+            )
     }
 }
