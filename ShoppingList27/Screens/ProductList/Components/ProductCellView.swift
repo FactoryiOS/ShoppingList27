@@ -8,37 +8,37 @@
 import SwiftUI
 
 struct ProductCellView: View {
-    private let viewModel: ProductCellViewModel
+    private let product: ProductCellModel
     
-    init(viewModel: ProductCellViewModel) {
-        self.viewModel = viewModel
+    init(product: ProductCellModel) {
+        self.product = product
     }
     
     var body: some View {
         HStack {
-            Button("", action: { viewModel.toggleChecked()})
-                .buttonStyle(.checkbox(isChecked: viewModel.isChecked))
+            Button("", action: { product.toggleChecked()})
+                .buttonStyle(.checkbox(isChecked: product.isChecked))
             
             Group {
-                Text(viewModel.product.name)
+                Text(product.product.name)
                 
                 Spacer()
-                Text("\(viewModel.product.count) \(viewModel.product.unitMeasure.shortName)")
+                Text("\(product.product.count) \(product.product.unitMeasure.shortName)")
             }
-            .foregroundColor(viewModel.isChecked ? .hint : .grey80)
+            .foregroundColor(product.isChecked ? .hint : .grey80)
         }
     }
 }
 
 #Preview {
     let productCellPreview = VStack(alignment: .leading, spacing: 20) {
-        ProductCellView(viewModel: ProductCellViewModel(model: .mock1))
+        ProductCellView(product: ProductCellModel(model: .mock1))
             .padding(.horizontal, 28)
         Divider()
-        ProductCellView(viewModel: ProductCellViewModel(model: .mock2))
+        ProductCellView(product: ProductCellModel(model: .mock2))
             .padding(.horizontal, 28)
         Divider()
-        ProductCellView(viewModel: ProductCellViewModel(model: .mock3))
+        ProductCellView(product: ProductCellModel(model: .mock3))
             .padding(.horizontal, 28)
     }
     .frame(maxHeight: .infinity)
