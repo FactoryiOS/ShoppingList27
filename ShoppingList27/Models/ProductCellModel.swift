@@ -23,14 +23,12 @@ final class ProductCellModel {
     }
 }
 
-
-
 // Для выбора ед. изм. в дальнейшем
 enum UnitOfMeasure: String, CaseIterable, Identifiable {
     case kilogram = "кг."
     case gram = "г."
     case liter = "л."
-    case ml = "мл."
+    case mlt = "мл."
     case piece = "шт."
     
     // Может понадобиться при создании для отображения в ForEach понадобится ID
@@ -48,5 +46,5 @@ struct Product: Identifiable {
     
     static let mock1 = Product(name: "Чайник", count: 2, unitMeasure: .piece)
     static let mock2 = Product(name: "Вода", count: 2, unitMeasure: .liter)
-    static let mock3 = Product(name: "Макароны", count: 4, unitMeasure: .ml)
+    static let mock3 = Product(name: "Макароны", count: 4, unitMeasure: .mlt)
 }
