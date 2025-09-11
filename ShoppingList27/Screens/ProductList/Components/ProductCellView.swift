@@ -8,41 +8,38 @@
 import SwiftUI
 
 struct ProductCellView: View {
+    private let viewModel: ProductCellViewModel
     
-    var product: ProductCellModel
+    init(viewModel: ProductCellViewModel) {
+        self.viewModel = viewModel
+    }
     
-    @Binding var isChecked: Bool
-
     var body: some View {
         HStack {
-            Button("", action: { isChecked.toggle() })
-            .buttonStyle(.checkbox(isChecked: isChecked))
+            Button("", action: { viewModel.toggleChecked()})
+                .buttonStyle(.checkbox(isChecked: viewModel.isChecked))
             
             Group {
-                Text(product.name)
+                Text(viewModel.product.name)
                 
                 Spacer()
-                Text("\(product.count) \(product.unitMeasure.shortName)")
+                Text("\(viewModel.product.count) \(viewModel.product.unitMeasure.shortName)")
             }
-            .foregroundColor(isChecked ? .hint : .grey80)
+            .foregroundColor(viewModel.isChecked ? .hint : .grey80)
         }
     }
 }
 
 #Preview {
-    @Previewable @State var isChecked1 = false
-    @Previewable @State var isChecked2 = false
-    @Previewable @State var isChecked3 = false
-    
     let productCellPreview = VStack(alignment: .leading, spacing: 20) {
-        ProductCellView(product: .mock1, isChecked: $isChecked1)
-            .padding(.horizontal)
+        ProductCellView(viewModel: ProductCellViewModel(model: .mock1))
+            .padding(.horizontal, 28)
         Divider()
-        ProductCellView(product: .mock2, isChecked: $isChecked2)
-            .padding(.horizontal)
+        ProductCellView(viewModel: ProductCellViewModel(model: .mock2))
+            .padding(.horizontal, 28)
         Divider()
-        ProductCellView(product: .mock3, isChecked: $isChecked3)
-            .padding(.horizontal)
+        ProductCellView(viewModel: ProductCellViewModel(model: .mock3))
+            .padding(.horizontal, 28)
     }
     .frame(maxHeight: .infinity)
     .background(Color.backgroundScreen)
