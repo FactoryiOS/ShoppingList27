@@ -33,6 +33,7 @@ struct DesignSelector: View {
                 title
             .padding(.horizontal, 12)
             iconsGrid
+            .padding(.horizontal, 4)
         }
         .padding(.vertical, 12)
     }
@@ -52,13 +53,13 @@ struct DesignSelector: View {
     }
     
     private func makeColumns(count: Int,
-                             spacingBetweenColumns spacing: CGFloat,
+                             spacingBetweenColumns spacing: CGFloat = 0,
                              maxColumnWidth width: CGFloat) -> [GridItem] {
-        Array(repeating: GridItem(.fixed(width), spacing: spacing), count: count)
+        Array(repeating: GridItem(.flexible(minimum: 48), spacing: spacing), count: count)
     }
     
     private func makeVGrid(columnsCount: Int,
-                           spacingBetweenColumns: CGFloat = 8,
+                           spacingBetweenColumns: CGFloat = 0,
                            maxColumnWidth: CGFloat = 48) -> some View {
         LazyVGrid(columns: makeColumns(count: columnsCount,
                                        spacingBetweenColumns: spacingBetweenColumns,
