@@ -65,7 +65,7 @@ struct ListsMainView: View {
             LazyVStack(alignment: .center, spacing: 12) {
                 ForEach(viewModel.lists) { list in
                     ListItemView(item: list)
-                        .padding(.bottom, bottomPaddingForRow(list: list))
+                        .padding(.bottom, bottomPadding(for: list))
                 }
                 Spacer()
             }
@@ -89,7 +89,7 @@ struct ListsMainView: View {
     
     // MARK: - Private Methods
     
-    private func bottomPaddingForRow(list: ListItem) -> CGFloat {
+    private func bottomPadding(for list: ListItem) -> CGFloat {
         list.id == viewModel.lists.last?.id ? 56 : 0
     }
     
