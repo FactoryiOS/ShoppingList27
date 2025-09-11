@@ -7,10 +7,15 @@
 
 import SwiftUI
 
+// MARK: - ListsMainView
 struct ListsMainView: View {
+    
+    // MARK: - Private Properties
     
     @ObservedObject private var viewModel: ListsViewModel
     @State private var isCreatingNewList: Bool = false
+    
+    // MARK: - Body
     
     var body: some View {
         NavigationStack {
@@ -29,6 +34,8 @@ struct ListsMainView: View {
             }
         }
     }
+    
+    // MARK: - Subviews
     
     @ViewBuilder
     private var content: some View {
@@ -80,9 +87,13 @@ struct ListsMainView: View {
         .tint(Color.grey80)
     }
     
+    // MARK: - Private Methods
+    
     private func bottomPaddingForRow(list: ListItem) -> CGFloat {
         list.id == viewModel.lists.last?.id ? 56 : 0
     }
+    
+    // MARK: - Initializer
     
     init(viewModel: ListsViewModel) {
         self.viewModel = viewModel
@@ -90,6 +101,7 @@ struct ListsMainView: View {
     
 }
 
+// MARK: - Extension - Constants
 private extension ListsMainView {
     enum Strings {
         static let title = "Мои Списки"
@@ -104,6 +116,7 @@ private extension ListsMainView {
     }
 }
 
+// MARK: - Preview - Data
 #Preview("Data") {
     let viewModel = ListsViewModel()
     viewModel.insert(list: .mock)
@@ -118,6 +131,7 @@ private extension ListsMainView {
     return ListsMainView(viewModel: viewModel)
 }
 
+// MARK: - Preview - Empty
 #Preview("Empty") {
     let viewModel = ListsViewModel()
     return ListsMainView(viewModel: viewModel)

@@ -9,11 +9,15 @@ import SwiftUI
 
 final class ListsViewModel: ObservableObject {
     
+    // MARK: - Internal Properties
+    
     @Published private(set) var lists: [ListItem] = []
     
     var shouldDisplayPlaceholder: Bool {
         lists.isEmpty
     }
+    
+    // MARK: - Internal Methods
     
     func insert(list: ListItem) {
         lists.append(list)
