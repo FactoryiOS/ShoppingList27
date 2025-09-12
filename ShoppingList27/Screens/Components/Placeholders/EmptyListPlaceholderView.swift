@@ -26,7 +26,6 @@ struct EmptyListPlaceholderView: View {
                 textContent
             }
             .frame(alignment: .center)
-            .background(Color.yellow)
     }
     
     private var imageContent: some View {
