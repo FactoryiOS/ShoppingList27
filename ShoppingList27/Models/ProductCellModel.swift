@@ -11,15 +11,15 @@ import SwiftUI
 @Observable
 final class ProductCellModel {
     var product: Product
-    var isChecked: Bool
+    var isBought: Bool
     
-    init(model: Product, isChecked: Bool = false) {
+    init(model: Product, isBought: Bool = false) {
         self.product = model
-        self.isChecked = isChecked
+        self.isBought = isBought
     }
     
     func toggleChecked() {
-        isChecked.toggle()
+        isBought.toggle()
     }
 }
 

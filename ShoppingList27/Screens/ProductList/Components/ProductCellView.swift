@@ -17,7 +17,7 @@ struct ProductCellView: View {
     var body: some View {
         HStack {
             Button("", action: { product.toggleChecked()})
-                .buttonStyle(.checkbox(isChecked: product.isChecked))
+                .buttonStyle(.checkbox(isChecked: product.isBought))
             
             Group {
                 Text(product.product.name)
@@ -25,7 +25,7 @@ struct ProductCellView: View {
                 Spacer()
                 Text("\(product.product.count) \(product.product.unitMeasure.shortName)")
             }
-            .foregroundColor(product.isChecked ? .hint : .grey80)
+            .foregroundColor(product.isBought ? .greyList : .grey80)
         }
     }
 }
